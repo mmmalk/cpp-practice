@@ -1,23 +1,25 @@
 #include <iostream>
-#include <string.h>
+#include <string>
 using namespace std;
 
-char reverse(char *arg[]);
+void reverse(string &str);
 
 int main(int argc, char *argv[]){
 
-    size_t size = strlen(argv[1]);
-    char reversed[size];
+    string str = argv[1];
 
-    cout << size << endl;
-            
+    cout << str << endl;
+    reverse(str);
+
     return 0;
 }
 
-char reverse(char *arg[]){
-    if(arg[0]=='\0'){
-        return *arg[0];
+void reverse(const string &str){
+    size_t size = str.size();
+    if(size == 1){
+        cout << str << endl;
     } else {
-        
+        cout << str[size -1] << endl;
+        reverse(str.substr(0, size -1));
     }
 }
