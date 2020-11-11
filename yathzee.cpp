@@ -5,12 +5,15 @@ using namespace std;
 
 vector<int> *randDice(int number);
 
+int calculateUpper(vector<int> &dices);
+
 int main(int argc, char *argv[]){
-    vector<int> *dices = randDice(6);
+    vector<int> *dices = randDice(5);
     for(auto i: *dices){
         cout << i << "\t";
     };
     cout << endl;
+    cout << "upper pts: " << calculateUpper(*dices) << endl;
     return 0;
 }
 
@@ -24,4 +27,20 @@ vector<int> *randDice(int number){
         vec->push_back(dist(gen));
     }
     return vec;
+}
+
+int calculateUpper(vector<int> &dices){
+    int pts = 0;
+    for(int dots=1; dots<=6; ++dots){
+        int count = 0;
+        for(auto dice: dices){
+            if(dice == dots) {
+                ++count;
+                }
+        }
+        if(count >= 3){
+            pts += count*dots;
+        }
+    }
+    return pts;
 }
